@@ -1,13 +1,22 @@
-import { theme } from './styles'
-import { ThemeProvider } from "styled-components"
+import styled from "styled-components"
 
+const Wrapper = styled.div`
+  
+  @media (max-width: 375px){
+
+  }
+
+  @media (max-width: 1366px){
+
+  }
+`
 
 
 const Theme = () => {
   return (
-    <ThemeProvider theme={theme}>
-      
-    </ThemeProvider>
+    <Wrapper>
+      t
+    </Wrapper>
   )
 }
 
