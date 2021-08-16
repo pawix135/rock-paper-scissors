@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { compare } from '../gameMechanics'
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 const Wrapper = styled.div`
   display: grid;
@@ -75,7 +75,7 @@ const GameBoard = ({ game, setGame }) => {
 
   const [bM, setBotMove] = useState(false);
 
-  const playAgin = () => {
+  const playAgin = useCallback(() => {
     setBotMove(false);
     setGame(bf => ({
       ...bf,
@@ -86,8 +86,8 @@ const GameBoard = ({ game, setGame }) => {
       gameState: "OPPONENT...",
       playerMove: null,
       botMove: null
-    }));
-  }
+    }))
+  }, [setGame])
 
   useEffect(() => {
     if (game.playerMove === null) return;
@@ -96,6 +96,7 @@ const GameBoard = ({ game, setGame }) => {
     let botChoice = game.botMove.name.toLowerCase();
 
     setTimeout(() => {
+
       setBotMove(true);
       let results = compare(playerChoice, botChoice);
 
@@ -129,7 +130,7 @@ const GameBoard = ({ game, setGame }) => {
       }
     }, 1500)
 
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game.playerMove])
 
   return (

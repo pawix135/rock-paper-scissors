@@ -1,3 +1,4 @@
+import { Paper, Rock, Scissors } from './Components/moves';
 var choices = ["rock", "paper", "scissors"];
 var map = {};
 
@@ -16,3 +17,54 @@ export const compare = (player, bot) => {
 
 
 
+export const pickMove = (setGame, mv) => {
+
+  const choices = ['paper', 'rock', 'scissors'];
+  let randomNumber = Math.floor(Math.random() * 3)
+
+  let mov;
+  let botMove;
+  let botRandom = choices[randomNumber];
+
+  switch (mv) {
+    case 'paper':
+      mov = Paper;
+      break;
+    case 'rock':
+      mov = Rock;
+      break;
+    case 'scissors':
+      mov = Scissors;
+      break;
+    default:
+      break;
+  }
+
+  switch (botRandom) {
+    case 'paper':
+      botMove = Paper;
+      break;
+    case 'rock':
+      botMove = Rock;
+      break;
+    case 'scissors':
+      botMove = Scissors;
+      break;
+    default:
+      break;
+  }
+
+
+  setGame(bf => ({
+    ...bf,
+    playerMove: mov,
+    botMove: botMove,
+    played: true,
+    isVisible: {
+      pick: !bf.isVisible.pick,
+      picked: !bf.isVisible.picked,
+    }
+  }));
+
+
+}

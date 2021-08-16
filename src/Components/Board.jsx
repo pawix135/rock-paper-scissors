@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import traiangle from '../images/bg-triangle.svg'
 import { Rock, Paper, Scissors } from './moves'
+import { pickMove } from '../gameMechanics'
 
 const Wrapper = styled.div`
   width: 70%;
@@ -12,30 +13,11 @@ const Wrapper = styled.div`
   margin-top: 100px;
 `
 
-const Move = styled.div`
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  cursor: pointer;
-  transition: .3s;
 
-  :hover{
-    transform: scale(1.2);
-  }
+const Board = ({ setGame }) => {
 
-`
-
-
-const Board = ({ pick }) => {
-
-  const makeMove = (moveType) => {
-    // log
-    pick(moveType)
+  const makeMove = (mv) => {
+    pickMove(setGame, mv)
   }
 
   return (
